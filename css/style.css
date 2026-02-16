@@ -1,0 +1,760 @@
+/* =========================================================
+   PALETA ZOE (CHAMPAGNE/NUDE)
+========================================================= */
+:root {
+  --bg: #fff9f4;
+  --surface: #ffffff;
+  --surface-soft: #faf7f2;
+  --beige: #f7e7ce;
+  --nude: #e8cfc4;
+  --gold: #c9a24d;
+  --text: #2a2a2a;
+  --muted: #6b6b6b;
+  --line: rgba(201, 162, 77, 0.55);
+}
+
+/* =========================================================
+   BASE
+========================================================= */
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: "Lora", serif;
+  letter-spacing: 0.2px;
+
+  background-color: var(--bg);
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+.cover-title,
+.nombre,
+.section-title,
+.agradecimiento-nombre {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.cover-subtitle,
+.evento,
+.eyebrow,
+.cover-eyebrow {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
+
+/* =========================================================
+   PORTADA / COVER (FIX CLICK SOBRE)
+========================================================= */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 249, 244, 0.7);
+  opacity: 1;
+}
+
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(110, 90, 82, 0.38);
+  pointer-events: none;
+}
+
+
+.cover.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+
+.cover-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201, 162, 77, 0.9);
+}
+.cover-title {
+  font-size: 2.4rem;
+  margin: 0.3rem 0;
+  color: var(--text);
+}
+.cover-subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+  color: rgba(42, 42, 42, 0.75);
+}
+
+/* =========================================================
+   SOBRE (ENVELOPE)
+========================================================= */
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 280px;
+  background: var(--bg);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+
+  border: 1px solid rgba(201, 162, 77, 0.18);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+
+  z-index: 2; 
+  cursor: pointer;
+
+  animation: float 3s ease-in-out infinite;
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.envelope:hover {
+  transform: translateY(-2px);
+}
+.envelope:active {
+  transform: translateY(1px) scale(0.99);
+}
+.envelope.open {
+  transform: translateY(-30px);
+  opacity: 0;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 162, 77, 0.18),
+    rgba(232, 207, 196, 0.18)
+  );
+  clip-path: polygon(0 0, 50% 75%, 100% 0);
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+  z-index: 3;
+}
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-content {
+  position: relative;
+  padding: 6rem 2rem 3rem;
+  z-index: 2;
+}
+
+/* =========================================================
+   CARDS / BOX (BASE ÚNICA)
+========================================================= */
+.box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+
+  isolation: isolate;
+
+  min-height: 560px;
+  padding: 2.6rem 2.4rem;
+
+  background-image: url("../img/fondo2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  box-shadow:
+    0 32px 70px rgba(0, 0, 0, 0.13),
+    0 10px 22px rgba(0, 0, 0, 0.06);
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 249, 244, 0.22);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.box > * {
+  position: relative;
+  z-index: 1;
+}
+
+.box-soft {
+  background-color: rgba(250, 247, 242, 0.72);
+}
+.box-beige {
+  background-color: rgba(247, 231, 206, 0.65);
+}
+
+/* =========================================================
+   TEXTOS / ELEMENTOS GENERALES
+========================================================= */
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(201, 162, 77, 0.9);
+}
+
+.nombre {
+  font-size: 3rem;
+  color: var(--text);
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4b37f, transparent);
+  margin: 1.1rem auto 1.6rem;
+  opacity: 0.8;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  margin: 1.2rem 0 1.1rem;
+  color: var(--text);
+}
+
+.section-text {
+  font-size: 0.95rem;
+  line-height: 2.1;
+  max-width: 420px;
+  margin: 0 auto;
+  color: var(--muted);
+  text-align: center;
+}
+
+.section-icon {
+  font-size: 1.5rem;
+  color: rgba(201, 162, 77, 0.9);
+}
+
+/* =========================================================
+   FOTO CIRCULAR
+========================================================= */
+.foto-circular {
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  padding: 6px;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 162, 77, 0.35),
+    rgba(232, 207, 196, 0.35)
+  );
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.foto-circular:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.16),
+    0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   BOTONES ZOE (BASE + VARIANTES)
+========================================================= */
+.btn-zoe {
+  position: relative;
+  z-index: 10;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 16px;
+
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-decoration: none;
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.btn-zoe:hover {
+  transform: translateY(-2px);
+}
+.btn-zoe:active {
+  transform: translateY(0);
+}
+
+.btn-zoe-outline {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  color: rgba(42, 42, 42, 0.92);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+}
+.btn-zoe-outline:hover {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(201, 162, 77, 0.55);
+  color: rgba(42, 42, 42, 1);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+.btn-zoe-primary {
+  background: rgba(247, 231, 206, 0.88);
+  border: 1px solid rgba(201, 162, 77, 0.55);
+  color: var(--text);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+.btn-zoe-primary:hover {
+  background: rgba(247, 231, 206, 0.98);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+.day-actions,
+.rsvp-actions {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* =========================================================
+   MENSAJE
+========================================================= */
+.mensaje-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2.4rem !important;
+}
+.mensaje-box .section-icon {
+  margin-bottom: 0.9rem !important;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+.mensaje-box .section-title {
+  margin: 0 0 1.2rem 0 !important;
+  font-size: 1.65rem;
+}
+.mensaje-box .divider {
+  margin: 0 auto 1.6rem auto !important;
+}
+.mensaje-box .section-text {
+  margin: 0 auto !important;
+  max-width: 460px;
+  font-size: 1.02rem;
+  line-height: 2.35;
+}
+.mensaje-firma {
+  margin-top: 1.8rem !important;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 1.5px;
+  font-size: 0.95rem;
+  color: rgba(110, 90, 82, 0.8);
+}
+
+/* =========================================================
+   EL GRAN DÍA
+========================================================= */
+.day-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3.6rem 2.4rem !important;
+}
+.day-card .eyebrow {
+  margin-bottom: 0.8rem !important;
+}
+.day-card .section-title {
+  margin: 0 0 1.6rem 0 !important;
+}
+.day-card .contador {
+  margin: 0 0 2rem 0 !important;
+}
+.day-card .day-info {
+  margin: 0 auto 2.2rem auto !important;
+  line-height: 2.3;
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+.contador {
+  margin: 0;
+}
+.contador-item {
+  background: rgba(247, 231, 206, 0.65);
+  border-radius: 16px;
+  padding: 12px 14px;
+  min-width: 64px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(201, 162, 77, 0.14);
+}
+.contador-item span {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: var(--text);
+}
+.contador-item small {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(110, 90, 82, 0.8);
+}
+
+/* =========================================================
+   RSVP / CONFIRMAR ASISTENCIA
+========================================================= */
+.rsvp-card {
+  padding: 3.2rem 2.4rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.rsvp-card .section-title {
+  margin: 0 0 1.2rem 0 !important;
+  font-size: 1.6rem;
+}
+.rsvp-text {
+  margin: 0 auto 2.2rem auto !important;
+  max-width: 460px;
+  font-size: 1.02rem;
+  line-height: 2.3;
+}
+/* =========================================================
+   CONFIRMACION 
+========================================================= */
+
+.confirmacion-box {
+  justify-content: flex-start; 
+  padding: 2.6rem 2.4rem 3.6rem !important; 
+}
+.confirmacion-box .section-title {
+  margin-bottom: 1.6rem !important;
+}
+
+
+.confirmacion-box .confirmacion-text {
+  max-width: 300px; 
+  line-height: 2.5; 
+  margin-top: 0.8rem;
+}
+
+
+.confirmacion-box .rsvp-actions {
+  margin-top: 3rem;
+}
+
+/* =========================================================
+   MENÚ (reutiliza MENSAJE y ajusta ancho/espacios)
+========================================================= */
+.menu-card{
+  padding-top: 2.4rem !important; 
+}
+
+.menu-card .menu-text{
+  max-width: 300px;              
+}
+
+.menu-actions{
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  margin-top: 2.2rem;
+}
+
+
+/* =========================================================
+   GALERÍA (armonía sistema Zoe)
+========================================================= */
+
+.gallery-card{
+  padding-top: 2.6rem !important;
+}
+
+
+.gallery-card .gallery-text{
+  max-width: 380px;
+  margin-bottom: 2.4rem !important;
+}
+
+
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 2.4rem;
+}
+
+.gallery-grid img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.10),
+    0 4px 10px rgba(0,0,0,.05);
+
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.gallery-grid img:hover{
+  transform: translateY(-4px);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.14),
+    0 6px 14px rgba(0,0,0,.08);
+}
+
+
+.gallery-actions{
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  margin-top: 1.2rem;
+}
+/* =========================================================
+   PLAYLIST (armonía sistema Zoe)
+========================================================= */
+.playlist-card{
+  padding-top: 2.6rem !important;
+}
+
+.playlist-card .playlist-text{
+  max-width: 380px;
+  margin: 0 auto 2.2rem auto !important;
+  line-height: 2.35;
+}
+
+
+.playlist-actions{
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  margin-top: .6rem;
+}
+/* =========================================================
+   REGALO (sin QR)
+========================================================= */
+.regalo-card{ padding-top: 2.6rem !important; }
+
+.regalo-text{
+  max-width: 380px;
+  margin: 0 auto 2.1rem auto !important;
+  line-height: 2.35;
+}
+
+.regalo-actions{
+  width: 100%;
+  max-width: 420px;
+  display: grid;
+  margin-top: .2rem;
+}
+
+/* =========================================================
+   MODAL ZOE
+========================================================= */
+.zoe-modal{
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(201,162,77,.18);
+  background: rgba(255,249,244,.92);
+  box-shadow: 0 40px 90px rgba(0,0,0,.18);
+}
+
+.zoe-modal-header{
+  border: 0;
+  padding: 1.2rem 1.25rem .7rem;
+  background: transparent;
+}
+
+.zoe-modal-header .modal-title{
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: .6px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+}
+
+.zoe-close{
+  filter: opacity(.6);
+}
+
+.zoe-modal-body{
+  padding: 1rem 1.25rem 1.1rem;
+}
+
+.zoe-data{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(201,162,77,.22);
+  border-radius: 18px;
+  padding: 1rem 1rem;
+  box-shadow: 0 16px 34px rgba(0,0,0,.06);
+}
+
+.zoe-row{
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: .8rem;
+  padding: .65rem .2rem;
+}
+
+.zoe-row + .zoe-row{
+  border-top: 1px solid rgba(201,162,77,.18);
+}
+
+.zoe-label{
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 1.2px;
+  color: rgba(110,90,82,.78);
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+
+.zoe-value{
+  font-family: 'Lora', serif;
+  color: rgba(42,42,42,.92);
+  font-size: .98rem;
+  word-break: break-word;
+}
+
+.zoe-hint{
+  margin-top: .95rem;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: .9px;
+  color: rgba(110,90,82,.80);
+  text-align: center;
+}
+
+.zoe-modal-footer{
+  border: 0;
+  padding: .9rem 1.25rem 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+
+/* =========================================================
+   AGRADECIMIENTO (alineado a estética Zoe)
+========================================================= */
+
+.agradecimiento-text{
+  max-width: 300px;   /* más angosto = más alto visual */
+  margin: 0 auto !important;
+  font-size: 1.02rem;
+  line-height: 2.35;
+  color: rgba(110,90,82,.85);
+}
+
+.agradecimiento-nombre{
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+
+/* =========================================================
+   FOOTER ZOE
+========================================================= */
+
+.footer-zoe{
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.footer-divider{
+  width: 60px;
+  height: 1px;
+  margin: 0 auto 1.2rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201,162,77,.6),
+    transparent
+  );
+  opacity: .8;
+}
+
+.footer-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  text-decoration: none;
+  transition: transform .3s ease, opacity .3s ease;
+}
+
+.footer-link:hover{
+  transform: translateY(-2px);
+  opacity: .9;
+}
+
+.footer-logo{
+  height: 48px;
+  opacity: .75;
+  transition: opacity .3s ease;
+}
+
+.footer-link:hover .footer-logo{
+  opacity: 1;
+}
+
+.footer-text{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: .9rem;
+  letter-spacing: 1.5px;
+  color: rgba(110,90,82,.75);
+}
