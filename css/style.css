@@ -264,8 +264,8 @@ body {
    FOTO CIRCULAR
 ========================================================= */
 .foto-circular {
-  width: 190px;
-  height: 190px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 50%;
 
