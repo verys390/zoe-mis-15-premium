@@ -361,7 +361,22 @@ body {
   gap: 0.75rem;
   margin-top: 0.5rem;
 }
+/* Barra de progreso armónica */
+.zoe-progress{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.05);
+}
 
+.zoe-progress .progress-bar{
+  width: 0%;
+  height: 100%;
+  border-radius: 999px;
+  transition: width .25s ease;
+  background: linear-gradient(90deg, rgba(214,176,105,.95), rgba(231,205,152,.95));
+}
 /* =========================================================
    MENSAJE
 ========================================================= */
@@ -543,7 +558,7 @@ body {
 
 .gallery-grid img{
   width: 100%;
-  aspect-ratio: 1 / 1;
+ aspect-ratio: 2 / 3;
   object-fit: cover;
   border-radius: 18px;
 
@@ -568,6 +583,12 @@ body {
   display: grid;
   margin-top: 1.2rem;
 }
+.upload-status{
+  margin-top: 12px;
+  text-align: center;
+  font-size: .95rem;
+  opacity: .9;
+}
 /* =========================================================
    PLAYLIST (armonía sistema Zoe)
 ========================================================= */
@@ -587,6 +608,17 @@ body {
   max-width: 420px;
   display: grid;
   margin-top: .6rem;
+}
+.zoe-modal{
+  border-radius: 22px;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.zoe-modal .modal-title{
+  font-weight: 800;
 }
 /* =========================================================
    REGALO (sin QR)

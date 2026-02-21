@@ -253,11 +253,11 @@
               </h3>
               <div class="divider"></div>
               <p class="section-text menu-text">
-                 Para acompañarme en esta noche tan especial, 
-                 confirmá tu asistencia y reservá tu lugar.
-                 <br>
-                 La confirmación estará abierta hasta el 
-                 <strong>12 de marzo de 2026</strong>.
+                Para acompañarme en esta noche tan especial,
+                confirmá tu asistencia y reservá tu lugar.
+                <br>
+                La confirmación estará abierta hasta el
+                <strong>12 de marzo de 2026</strong>.
               </p><br>
 
               <div class="rsvp-actions">
@@ -307,7 +307,7 @@
 
               <div class="zoe-row">
                 <span class="zoe-label">Alias</span>
-                <span class="zoe-value" id="aliasEntrada">joni.lincina.dj</span>
+                <span class="zoe-value" id="aliasEntrada">joni.lencina.dj</span>
               </div>
             </div>
 
@@ -325,14 +325,11 @@
               Copiar alias
             </button>
 
-          <a href="https://wa.me/5492344502066?text=Hola%20%F0%9F%91%8B%20Te%20env%C3%ADo%20el%20comprobante%20de%20la%20entrada%20para%20el%20cumplea%C3%B1os%20de%20Zoe.%20Adjunto%20comprobante.%20%C2%A1Gracias!" 
-            target="_blank" 
-            rel="noopener" 
-            class="btn-zoe btn-zoe-primary"
-            id="btnEnviarComprobante">
-            <i class="bi bi-whatsapp"></i>
-            Enviar comprobante
-          </a>
+            <a href="https://wa.me/5492344502066?text=Hola%20%F0%9F%91%8B%20Te%20env%C3%ADo%20el%20comprobante%20de%20la%20entrada%20para%20el%20cumplea%C3%B1os%20de%20Zoe.%20Adjunto%20comprobante.%20%C2%A1Gracias!"
+              target="_blank" rel="noopener" class="btn-zoe btn-zoe-primary" id="btnEnviarComprobante">
+              <i class="bi bi-whatsapp"></i>
+              Enviar comprobante
+            </a>
 
           </div>
 
@@ -363,8 +360,8 @@
               </p>
 
               <div class="menu-actions">
-                <a href="https://forms.gle/TUFORM" target="_blank" rel="noopener" class="btn-zoe btn-zoe-outline">
-                  <i class="bi bi-clipboard-check"></i>
+                <a id="btnMenuWhatsApp" href="#" target="_blank" rel="noopener" class="btn-zoe btn-zoe-primary">
+                  <i class="bi bi-whatsapp"></i>
                   Completar menú
                 </a>
               </div>
@@ -401,16 +398,23 @@
               </p>
 
               <div class="gallery-grid">
-                <img src="img/foto3.jpg" alt="Foto 1">
-                <img src="img/foto.jpg" alt="Foto 2">
+                <img src="img/foto2.jpg" alt="Foto 1">
+                <img src="img/foto3.jpg" alt="Foto 2">
                 <img src="img/foto4.jpg" alt="Foto 3">
               </div>
 
               <div class="gallery-actions">
-                <a href="https://forms.gle/TUFORM" target="_blank" rel="noopener" class="btn-zoe btn-zoe-primary">
+                <button id="btnSubirFotos" type="button" class="btn-zoe btn-zoe-primary">
                   <i class="bi bi-cloud-arrow-up"></i>
-                  Subir mis fotos
-                </a>
+                  Subir fotos
+                </button>
+
+                <input id="inputFotos" type="file" accept="image/*" multiple hidden>
+                <!-- PROGRESO GALERÍA -->
+                <div class="progress zoe-progress mt-3" aria-hidden="true">
+                  <div id="uploadProgressBar" class="progress-bar" role="progressbar" style="width:0%"></div>
+                </div>
+                <p id="uploadStatus" class="upload-status" aria-live="polite"></p>
               </div>
 
             </article>
@@ -440,12 +444,12 @@
                 La música también es parte de la magia ✨<br>
                 Sumá esa canción que no puede faltar en esta noche especial.
               </p>
-
               <div class="playlist-actions">
-                <a href="https://forms.gle/TUFORM" target="_blank" rel="noopener" class="btn-zoe btn-zoe-outline">
+                <button type="button" class="btn-zoe btn-zoe-outline" data-bs-toggle="modal"
+                  data-bs-target="#modalPlaylist">
                   <i class="bi bi-plus-circle"></i>
                   Sugerir canción
-                </a>
+                </button>
               </div>
 
               <p class="mensaje-firma">Gracias por sumar tu energía 🤍</p>
@@ -456,6 +460,53 @@
         </div>
       </div>
     </section>
+    <!-- MODAL PLAYLIST -->
+    <div class="modal fade" id="modalPlaylist" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content zoe-modal">
+
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title">
+              <i class="bi bi-music-note-beamed me-2"></i> Sugerí una canción
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+
+          <div class="modal-body pt-3">
+            <form id="formPlaylist" novalidate>
+
+              <div class="mb-2">
+                <input id="plNombre" class="form-control" type="text" placeholder="Tu nombre *" required>
+              </div>
+
+              <div class="mb-2">
+                <input id="plCancion" class="form-control" type="text" placeholder="Canción *" required>
+              </div>
+
+              <div class="mb-2">
+                <input id="plArtista" class="form-control" type="text" placeholder="Artista *" required>
+              </div>
+
+              <div class="mb-3">
+                <textarea id="plComentario" class="form-control" rows="2"
+                  placeholder="Comentario (opcional)"></textarea>
+              </div>
+
+              <button id="btnEnviarPlaylist" type="submit" class="btn-zoe btn-zoe-primary w-100">
+                Enviar
+              </button>
+              <!-- PROGRESO PLAYLIST -->
+              <div class="progress zoe-progress mt-3" aria-hidden="true">
+                <div id="playlistProgressBar" class="progress-bar" role="progressbar" style="width:0%"></div>
+              </div>
+              <p id="playlistStatus" class="upload-status" aria-live="polite"></p>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- REGALO -->
     <section id="regalo" class="py-2">
@@ -514,17 +565,17 @@
             <div class="zoe-data">
               <div class="zoe-row">
                 <span class="zoe-label">Titular</span>
-                <span class="zoe-value" id="titularTexto">Zoe Apellido</span>
+                <span class="zoe-value" id="titularTexto">Zoe Lencina</span>
               </div>
 
               <div class="zoe-row">
                 <span class="zoe-label">Alias</span>
-                <span class="zoe-value" id="aliasTexto">ZOE.REGALO.2026</span>
+                <span class="zoe-value" id="aliasTexto">zoe.lencina.1</span>
               </div>
 
               <div class="zoe-row">
-                <span class="zoe-label">CBU</span>
-                <span class="zoe-value" id="cbuTexto">0000000000000000000000</span>
+                <span class="zoe-label">Banco</span>
+                <span class="zoe-value" id="bancoTexto">Banco Provincia</span>
               </div>
             </div>
 
