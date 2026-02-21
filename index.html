@@ -243,29 +243,29 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-            <article class="box box-soft text-center reveal box-equal mensaje-box confirmacion-box">
+            <article class="box box-soft text-center reveal box-equal menu-card mensaje-box">
 
-
-              <div class="section-icon mb-3">
+              <div class="section-icon mb-4">
                 <i class="bi bi-check2-circle section-icon"></i>
               </div>
-
               <h3 class="section-title d-flex align-items-center justify-content-center gap-2">
                 Confirmar asistencia
               </h3>
-
               <div class="divider"></div>
-
-              <p class="section-text confirmacion-text">
-                Me haría muy feliz que formes parte de esta noche tan soñada.
-                Tu compañía hará que cada instante sea aún más especial.
-              </p>
+              <p class="section-text menu-text">
+                 Para acompañarme en esta noche tan especial, 
+                 confirmá tu asistencia y reservá tu lugar.
+                 <br>
+                 La confirmación estará abierta hasta el 
+                 <strong>12 de marzo de 2026</strong>.
+              </p><br>
 
               <div class="rsvp-actions">
-                <a href="https://wa.me/549XXXXXXXXX" target="_blank" rel="noopener" class="btn-zoe btn-zoe-primary">
+                <button type="button" class="btn-zoe btn-zoe-primary" data-bs-toggle="modal"
+                  data-bs-target="#modalEntrada" id="btnAbrirEntrada">
                   <i class="bi bi-whatsapp"></i>
-                  Confirmar por WhatsApp
-                </a>
+                  Confirmar asistencia
+                </button>
               </div>
 
             </article>
@@ -274,6 +274,71 @@
         </div>
       </div>
     </section>
+
+    <!-- MODAL ENTRADA -->
+    <div class="modal fade" id="modalEntrada" tabindex="-1" aria-labelledby="modalEntradaLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content zoe-modal">
+
+          <div class="modal-header zoe-modal-header">
+            <h5 class="modal-title" id="modalEntradaLabel">
+              <i class="bi bi-ticket-perforated me-2"></i>
+              Entrada y confirmación
+            </h5>
+            <button type="button" class="btn-close zoe-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+
+          <div class="modal-body zoe-modal-body">
+
+            <p class="section-text mb-3">
+              Para reservar tu lugar, la entrada tiene el siguiente valor:
+            </p>
+
+            <div class="zoe-data">
+              <div class="zoe-row">
+                <span class="zoe-label">Adultos</span>
+                <span class="zoe-value">$25.000</span>
+              </div>
+
+              <div class="zoe-row">
+                <span class="zoe-label">Niños</span>
+                <span class="zoe-value">$15.000</span>
+              </div>
+
+              <div class="zoe-row">
+                <span class="zoe-label">Alias</span>
+                <span class="zoe-value" id="aliasEntrada">joni.lincina.dj</span>
+              </div>
+            </div>
+
+            <div class="zoe-hint mt-3">
+              <i class="bi bi-info-circle me-2"></i>
+              Una vez realizada la transferencia, enviá el comprobante por WhatsApp.
+            </div>
+
+          </div>
+
+          <div class="modal-footer zoe-modal-footer d-flex gap-2 flex-wrap justify-content-center">
+
+            <button type="button" class="btn-zoe btn-zoe-outline" id="btnCopiarEntrada">
+              <i class="bi bi-clipboard"></i>
+              Copiar alias
+            </button>
+
+          <a href="https://wa.me/5492344502066?text=Hola%20%F0%9F%91%8B%20Te%20env%C3%ADo%20el%20comprobante%20de%20la%20entrada%20para%20el%20cumplea%C3%B1os%20de%20Zoe.%20Adjunto%20comprobante.%20%C2%A1Gracias!" 
+            target="_blank" 
+            rel="noopener" 
+            class="btn-zoe btn-zoe-primary"
+            id="btnEnviarComprobante">
+            <i class="bi bi-whatsapp"></i>
+            Enviar comprobante
+          </a>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <!-- MENÚ -->
     <section class="py-2">

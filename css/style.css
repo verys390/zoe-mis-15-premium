@@ -496,7 +496,10 @@ body {
 .confirmacion-box .rsvp-actions {
   margin-top: 3rem;
 }
-
+#btnAbrirEntrada.is-confirmed{
+  opacity: .9;
+  pointer-events: none;
+}
 /* =========================================================
    MENÚ (reutiliza MENSAJE y ajusta ancho/espacios)
 ========================================================= */

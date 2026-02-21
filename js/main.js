@@ -9,29 +9,36 @@ const FECHA_EVENTO = new Date("2026-03-28T21:30:00").getTime();
 const TIEMPO_APERTURA_SOBRE = 600;
 const TIEMPO_MOSTRAR_CONTENIDO = 1200;
 
+// ✅ WhatsApp (cambiá por el real)
+const WHATSAPP_NUMERO = "5492344502066";
+
 /* =======================
    ELEMENTOS DOM
 ======================= */
 
-// ❌ Ya no usamos btnOpen
+// Portada / contenido
 const cover = document.getElementById("cover");
 const contenido = document.getElementById("contenido");
+
+// Música <audio id="musica" ...>
 const musica = document.getElementById("musica");
 
-// El sobre clickeable (id nuevo)
+// Sobre clickeable
 const envelope = document.querySelector(".envelope");
 const envelopeOpen = document.getElementById("envelopeOpen");
 
+// Contador
 const diasEl = document.getElementById("dias");
 const horasEl = document.getElementById("horas");
 const minutosEl = document.getElementById("minutos");
 const segundosEl = document.getElementById("segundos");
 
+// Modal REGALO (ya lo tenías)
 const btnCopiarAlias = document.getElementById("btnCopiarAlias");
 const aliasTexto = document.getElementById("aliasTexto");
 
 /* =======================
-   APERTURA INVITACIÓN (FIX + CSS is-hidden)
+   APERTURA INVITACIÓN
 ======================= */
 
 let yaAbrio = false;
@@ -65,7 +72,7 @@ function abrirInvitacion() {
   }, TIEMPO_MOSTRAR_CONTENIDO);
 }
 
-/* ✅ Evento: click en el sobre */
+/* ✅ Evento: click/tecla en el sobre */
 if (envelopeOpen) {
   envelopeOpen.addEventListener("click", abrirInvitacion);
 
@@ -76,7 +83,6 @@ if (envelopeOpen) {
     }
   });
 }
-
 
 /* =======================
    CONTADOR REGRESIVO
@@ -111,17 +117,93 @@ function setContador(d, h, m, s) {
 ======================= */
 
 if (btnCopiarAlias && aliasTexto) {
-  btnCopiarAlias.addEventListener("click", () => {
+  btnCopiarAlias.addEventListener("click", async () => {
     const texto = aliasTexto.textContent.trim();
 
-    navigator.clipboard.writeText(texto).then(() => {
+    try {
+      await navigator.clipboard.writeText(texto);
       btnCopiarAlias.innerHTML = "✔ Alias copiado";
 
       setTimeout(() => {
         btnCopiarAlias.innerHTML =
           '<i class="bi bi-clipboard"></i> Copiar alias';
       }, 2000);
-    });
+    } catch (e) {
+      alert("No se pudo copiar automáticamente. Alias: " + texto);
+    }
+  });
+}
+
+/* =======================
+   MODAL ENTRADA (ASISTENCIA + PAGO) - ARMÓNICO
+   ✅ Sin botón "Confirmar" separado:
+   - Confirmación = click en "Enviar comprobante"
+======================= */
+
+// IDs del modal de entrada (del HTML)
+const btnAbrirEntrada = document.getElementById("btnAbrirEntrada");
+const aliasEntradaEl = document.getElementById("aliasEntrada");
+const btnCopiarEntrada = document.getElementById("btnCopiarEntrada");
+const btnEnviarComprobante = document.getElementById("btnEnviarComprobante");
+
+// Modal element
+const modalEntrada = document.getElementById("modalEntrada");
+
+// Arma el link de WhatsApp con mensaje automático
+function linkWhatsAppConMensaje() {
+  const alias = aliasEntradaEl ? aliasEntradaEl.textContent.trim() : "joni.lincina.dj";
+
+  const mensaje =
+    `Hola! 👋\n` +
+    `Te envío el comprobante de la entrada para los 15 de Zoe.\n\n` +
+    `✅ Transferí a alias: ${alias}\n` +
+    `Adultos: $25.000 | Niños: $15.000\n\n` +
+    `Adjunto comprobante.`;
+
+  return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensaje)}`;
+}
+
+// 1) Copiar alias de entrada
+if (btnCopiarEntrada && aliasEntradaEl) {
+  btnCopiarEntrada.addEventListener("click", async () => {
+    const texto = aliasEntradaEl.textContent.trim();
+    try {
+      await navigator.clipboard.writeText(texto);
+      btnCopiarEntrada.innerHTML = "✔ Alias copiado";
+      setTimeout(() => {
+        btnCopiarEntrada.innerHTML =
+          '<i class="bi bi-clipboard"></i> Copiar alias';
+      }, 1800);
+    } catch (e) {
+      alert("No se pudo copiar automáticamente. Alias: " + texto);
+    }
+  });
+}
+
+// 2) Cuando abre la modal, setea el link con mensaje automático
+if (modalEntrada) {
+  modalEntrada.addEventListener("show.bs.modal", () => {
+    if (btnEnviarComprobante) {
+      btnEnviarComprobante.setAttribute("href", linkWhatsAppConMensaje());
+    }
+  });
+}
+
+// 3) ✅ Confirmación armónica: al tocar "Enviar comprobante"
+//    - marca el botón de la card como Confirmado
+//    - cierra la modal
+if (btnEnviarComprobante && modalEntrada && btnAbrirEntrada) {
+  btnEnviarComprobante.addEventListener("click", () => {
+    // Cambia el botón de la card
+    btnAbrirEntrada.innerHTML =
+      '<i class="bi bi-check2-circle"></i> Confirmado';
+    btnAbrirEntrada.classList.add("is-confirmed");
+
+    // Cierra la modal
+    const instance =
+      bootstrap.Modal.getInstance(modalEntrada) ||
+      new bootstrap.Modal(modalEntrada);
+    instance.hide();
   });
 }
 
