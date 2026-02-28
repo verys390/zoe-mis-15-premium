@@ -10,15 +10,15 @@ const TIEMPO_APERTURA_SOBRE = 600;
 const TIEMPO_MOSTRAR_CONTENIDO = 1200;
 
 // ✅ WhatsApp real
-const WHATSAPP_NUMERO = "5492344502066";
+const WHATSAPP_NUMERO = "xxxxxxxx";
 
 // ✅ Apps Script (Fotos)
 const DRIVE_UPLOAD_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzKnZgXPlwxo0QxVmH38oRnMxVKJMxzWud2cM_TYcNZT15xEZNihVRWQn8YoSZ4mvA4/exec";
+  "https://script.google.com";
 
 // ✅ Apps Script (Playlist → Sheet)
 const PLAYLIST_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyJ3Hj-jJPqoEeoCCYbI00zZxnWfKym7TDgvW6JhM2nyHavfNG_fJLD7zTBW0qJN_R4/exec";
+  "https://script.google.com";
 
 /* =========================================================
    HELPERS
